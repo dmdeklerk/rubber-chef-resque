@@ -15,16 +15,73 @@ Repository structure of rubbers resque template - can be found [here](https://gi
 <table>
 <tr><td>* config</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;* initializers</td><td>Directory</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* resque.rb</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/initializers/resque.rb">resque.rb</a></td><td>
+
+  <h3>resque rails initializer</h3>
+
+  <h4>target</h4>
+  <code>[RAILS_ROOT]/config/initializers/resque.rb</code><p />
+
+
+</td></tr>
 <tr><td>&nbsp;&nbsp;* rubber</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* common</td><td>Directory</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque.yml</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/rubber/common/resque.yml">resque.yml<a/></td><td> 
+
+  <h3>resque config (ERB)</h3>
+
+  <h4>target</h4>
+  <code>[RAILS_ROOT]/config/resque.yml</code><p />
+  
+  Used in config/initializers/resque.rb<p/>
+  This contains the host and port of the redis server
+  
+
+</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* role</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque_web</td><td>Directory</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque-web-upstart.conf</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/rubber/role/resque_web/resque-web-upstart.conf">resque-web-upstart.conf</a></td><td>
+
+  <h3>upstart script (ERB)</h3>
+
+  <h4>target</h4>
+  <code>/etc/init/resque-web.conf</code><p />
+
+  <h4>parameter: <a href="https://github.com/rubber/rubber/blob/master/templates/base/config/rubber/rubber.yml">rubber_env.app_user</a></h4>
+  <code>app_user: app</code>
+
+  <h4>parameter: Rubber.root</h4>
+  <code>.</code>
+
+  <h4>parameter: rubber_env.resque_web_port</h4>
+  <code>5678</code>
+
+  <h4>parameter: rubber_env.resque_web_pid_file</h4>
+  <code>/var/run/resque-web.pid</code>
+
+</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque_worker</td><td>Directory</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque-pool.yml</td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque-pool-upstart.conf</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/rubber/role/resque_worker/resque-pool.yml">resque-pool.yml</a></td><td>
+
+  <h3>resque-pool config (ERB)</h3>
+
+  <h4>target</h4>
+  <code>[RAILS_ROOT]/config/resque-pool.yml</code><p />
+  
+  h4>parameter: rubber_env.resque_worker_count</h4>
+  <code>2</code>
+  
+</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/rubber/role/resque_worker/resque-pool-upstart.conf">resque-pool-upstart.conf</a></td><td>
+
+  <h3>upstart script (ERB)</h3>
+
+  <h4>target</h4>
+  <code>/etc/init/resque-pool.conf</code><p />
+
+  See resque-web-upstart.conf for parameters
+
+</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* deploy-resque.rb</td><td> ? </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-resque.yml</td><td>
 
