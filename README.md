@@ -237,6 +237,7 @@ Repository structure of rubbers monit template - can be found [here](https://git
 * https://github.com/rubber/rubber
 * https://github.com/capistrano/capistrano
 * http://mmonit.com/monit/
+* https://github.com/apsoto/monit (chef cookbook)
 * http://www.opscode.com/chef/
 * http://upstart.ubuntu.com/getting-started.html
 * http://upstart.ubuntu.com/cookbook/
