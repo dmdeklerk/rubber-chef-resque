@@ -82,11 +82,28 @@ Repository structure of rubbers resque template - can be found [here](https://gi
   See resque-web-upstart.conf for parameters
 
 </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* deploy-resque.rb</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/rubber/deploy-resque.rb">deploy-resque.rb</a></td><td> ? </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-resque.yml</td><td>
 
-
-
+  <h3>Capistrano tasks..<h3>
+  
+  <h4>start</h4>
+  <code>sudo service resque-pool start</code>
+  
+  <h4>stop</h4>
+  <code>sudo service resque-pool stop || true</code>
+  
+  <h4>force_stop</h4>
+  <code>kill -TERM `cat #{rubber_env.resque_pool_pid_file}`</code>
+  
+  <h4>stats</h4>
+  Continuously show worker stats
+  
+  <h4>start web</h4>
+  <code>sudo service resque-web start</code>
+  
+  <h4>stop web</h4>
+  <code>sudo service resque-web stop || true</code>
 
 
 </td></tr>
