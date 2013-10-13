@@ -8,6 +8,8 @@ Before coming to [chef](http://docs.opscode.com/) I used [rubber](https://github
 
 This cookbook is one-to-one copy of rubbers resque template but now implemented as chef recipes instead of the original capistrano templates.
 
+It uses [resque-pool](https://github.com/nevans/resque-pool) to manage resque workers and [monit](http://mmonit.com/monit/) to monitor resque-pool and resque's builtin resque-web. 
+
 #Analysis
 
 Repository structure of rubbers resque template - can be found [here](https://github.com/rubber/rubber/tree/master/templates/resque)
