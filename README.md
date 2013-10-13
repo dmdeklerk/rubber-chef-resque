@@ -26,30 +26,35 @@ Repository structure of rubbers resque template - can be found [here](https://gi
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque-pool.yml</td><td> ? </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque-pool-upstart.conf</td><td> ? </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* deploy-resque.rb</td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-resque.yml</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-resque.yml</td><td>
+
+
+
+
+
+</td></tr>
 <tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque.yml">resque.yml</a></td><td>
+
+  <h3>resque config</h3>
 
   <h4>target</h4>
   <code>[RAILS_ROOT]/config/resque.yml</code><p />
 
-  Placeholder for development. For the production version, see <code>config/rubber/common/resque.yml</code>
-  
 </td></tr>
 <tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque-pool.yml">resque-pool.yml</a></td><td>
+
+  <h3>resque-pool config</h3>
 
   <h4>target</h4>
   <code>[RAILS_ROOT]/config/resque-pool.yml</code><p />
 
-  Stub for running in development edit <code>config/rubber/role/resque_worker/resque-pool.yml</code> for production/staging
-  
 </td></tr>
-<tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque-web.ru">resque-web.ru</a></td><td> 
+<tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque-web.ru">resque-web.ru</a></td><td>
+
+  <h3>Rack initializer for resque-web</h3>
 
   <h4>target</h4>
   <code>[RAILS_ROOT]/config/resque-web.ru</code><p />
-
-  This file is used by Rack-based servers to start resque web we load environment to get the rails environment, 
-  because plugins like resque-retry reference job classes from one's environment within the web ui  
 
 </td></tr>
 <tr><td>* lib</td><td>Directory</td></tr>
@@ -61,8 +66,7 @@ Repository structure of rubbers resque template - can be found [here](https://gi
   <h4>target</h4>
   <code>[RAILS_ROOT]/lib/tasks/resque.rake</code><p />
   
-  Please read https://github.com/nevans/resque-pool#rake-task-config on how to add this to your Rakefile
-
+  See https://github.com/nevans/resque-pool#rake-task-config
 
 </td></tr>
 <tr><td>* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/templates.rb">templates.rb</a></td><td>
