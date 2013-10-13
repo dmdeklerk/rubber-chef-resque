@@ -1,12 +1,10 @@
 #Rubber-chef-resque
 
-Rubber's Resque (plus resque-pool) Capistrano Template Translated Into Chef Recipe.
+[Rubber](https://github.com/rubber/rubber/)'s resque capistrano template translated to Chef.
 
-#Intro
+Unfortunately the [resque cookbook](http://community.opscode.com/cookbooks/resque) on the opscode community site is no longer maintained by its creators at infochimps and is no longer working (out of the box) due to a dependency on a forked `runit` cookbook.
 
-Unfortunately the [resque cookbook](http://community.opscode.com/cookbooks/resque) on the opscode community site is no longer maintained by its creators at infochimps and is no longer working due to a dependency on a forked `runit` cookbook.
-
-Before coming to [chef](http://docs.opscode.com/) I used [rubber](https://github.com/rubber/rubber) to provision my servers and it contained a resque setup that I really liked.
+Before coming to [chef](http://docs.opscode.com/) I used [rubber](https://github.com/rubber/rubber) to provision my servers and it contained a resque setup that is pretty good.
 
 This cookbook is one-to-one copy of rubbers resque template but now implemented as chef recipes instead of the original capistrano templates.
 
@@ -48,11 +46,37 @@ Repository structure of rubbers monit template - can be found [here](https://git
 <tr><td>&nbsp;&nbsp;* rubber</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* role</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque_web</td><td>Directory</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* monit-resque_web.conf</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/role/resque_web/monit-resque_web.conf">monit-resque_web.conf</a></td><td>
+
+
+
+</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque_worker</td><td>Directory</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* monit-resque_pool.conf</td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* deploy-monit.rb</td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-monit.yml</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/role/resque_worker/monit-resque_pool.conf">monit-resque_pool.conf</a></td><td>
+
+
+</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/deploy-monit.rb">deploy-monit.rb</a></td><td> 
+
+<h3>Capistrano tasks..<h3>
+
+<h4>start</h4>
+<code>sudo service monit status || sudo service monit start</code>
+
+<h4>stop</h4>
+<code>sudo service monit stop || true</code>
+
+<h4>display status</h4>
+<code>sudo service monit status || true</code><p />
+<code>sudo ps -eopid,user,fname | grep [m]onit || true</code><p />
+<code>sudo netstat -tulpn | grep monit || true</code><p />
+
+</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/rubber-monit.yml">rubber-monit.yml</a></td><td> 
+
+
+
+</td></tr>
 <tr><td>* templates.yml</td><td>Rubber specific</td></tr>
 </table>
 
@@ -64,3 +88,5 @@ Repository structure of rubbers monit template - can be found [here](https://git
 * https://github.com/nevans/resque-pool
 * https://github.com/rubber/rubber
 * https://github.com/capistrano/capistrano
+* http://mmonit.com/monit/
+* http://www.opscode.com/chef/
