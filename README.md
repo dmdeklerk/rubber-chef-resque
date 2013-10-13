@@ -27,14 +27,60 @@ Repository structure of rubbers resque template - can be found [here](https://gi
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque-pool-upstart.conf</td><td> ? </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* deploy-resque.rb</td><td> ? </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-resque.yml</td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;* resque.yml</td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;* resque-pool.yml</td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;* resque-web.ru</td><td> ? </td></tr>
+<tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque.yml">resque.yml</a></td><td>
+
+  <h4>target</h4>
+  <code>[RAILS_ROOT]/config/resque.yml</code><p />
+
+  Placeholder for development. For the production version, see <code>config/rubber/common/resque.yml</code>
+  
+</td></tr>
+<tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque-pool.yml">resque-pool.yml</a></td><td>
+
+  <h4>target</h4>
+  <code>[RAILS_ROOT]/config/resque-pool.yml</code><p />
+
+  Stub for running in development edit <code>config/rubber/role/resque_worker/resque-pool.yml</code> for production/staging
+  
+</td></tr>
+<tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque-web.ru">resque-web.ru</a></td><td> 
+
+  <h4>target</h4>
+  <code>[RAILS_ROOT]/config/resque-web.ru</code><p />
+
+  This file is used by Rack-based servers to start resque web we load environment to get the rails environment, 
+  because plugins like resque-retry reference job classes from one's environment within the web ui  
+
+</td></tr>
 <tr><td>* lib</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;* tasks</td><td>Directory</td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* resque.rake</td><td> ? </td></tr>
-<tr><td>* templates.rb</td><td>Adds `resque`, `resque-pool` and `puma` gems to the projects main Gemfile</td></tr>
-<tr><td>* templates.yml</td><td>Rubber specific - lists dependencies (redis)</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/lib/tasks/resque.rake">resque.rake</a></td><td>
+
+  <h3>Rake file for resque-pool</h3>
+  
+  <h4>target</h4>
+  <code>[RAILS_ROOT]/lib/tasks/resque.rake</code><p />
+  
+  Please read https://github.com/nevans/resque-pool#rake-task-config on how to add this to your Rakefile
+
+
+</td></tr>
+<tr><td>* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/templates.rb">templates.rb</a></td><td>
+
+  <h3>Adds these gems to your Gemfile</h3>
+  
+  <ul>
+  <li><code>resque</code></li>
+  <li><code>resque-pool</code></li>
+  <li><code>puma</code></li>
+  </ul>
+
+</td></tr>
+<tr><td>* templates.yml</td><td>
+
+  Rubber specific - lists dependencies (redis)
+
+</td></tr>
 </table>
 
 Rubber has the concept of 'cross-cutting-templates', one of these templates is the `monit` template which has to be included in the chef recipe. See [monit](http://mmonit.com/monit/) for more information.
@@ -48,33 +94,55 @@ Repository structure of rubbers monit template - can be found [here](https://git
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque_web</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/role/resque_web/monit-resque_web.conf">monit-resque_web.conf</a></td><td>
 
-
+  <h3>monit config (ERB)</h3>
+  
+  <h4>target</h4>
+  <code>/etc/monit/monit.d/monit-resque_web.conf</code><p />
+  
+  <h4>parameter: resque_web_pid_file</h4>
+  <code>resque_web_pid_file = /var/run/resque-web.pid</code>
+  
+  <h4>parameter: Rubber.env</h4>
+  <code>Rubber.env = staging | default | production | whatever</code>
 
 </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* resque_worker</td><td>Directory</td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/role/resque_worker/monit-resque_pool.conf">monit-resque_pool.conf</a></td><td>
 
+  <h3>monit config (ERB)</h3>
+  
+  <h4>target</h4>
+  <code>/etc/monit/monit.d/monit-resque_pool.conf</code><p />
+  
+  <h4>parameter: resque_pool_pid_file</h4>
+  <code>resque_pool_pid_file = /var/run/resque-pool.pid</code>
+  
+  <h4>parameter: Rubber.env</h4>
+  <code>Rubber.env = staging | default | production | whatever</code>
 
 </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/deploy-monit.rb">deploy-monit.rb</a></td><td> 
 
-<h3>Capistrano tasks..<h3>
-
-<h4>start</h4>
-<code>sudo service monit status || sudo service monit start</code>
-
-<h4>stop</h4>
-<code>sudo service monit stop || true</code>
-
-<h4>display status</h4>
-<code>sudo service monit status || true</code><p />
-<code>sudo ps -eopid,user,fname | grep [m]onit || true</code><p />
-<code>sudo netstat -tulpn | grep monit || true</code><p />
+  <h3>Capistrano tasks..<h3>
+  
+  <h4>start</h4>
+  <code>sudo service monit status || sudo service monit start</code>
+  
+  <h4>stop</h4>
+  <code>sudo service monit stop || true</code>
+  
+  <h4>display status</h4>
+  <code>sudo service monit status || true</code><p />
+  <code>sudo ps -eopid,user,fname | grep [m]onit || true</code><p />
+  <code>sudo netstat -tulpn | grep monit || true</code><p />
 
 </td></tr>
 <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/monit/config/rubber/rubber-monit.yml">rubber-monit.yml</a></td><td> 
 
-
+  <h3>Rubber specific..<h3>
+  
+  <h4>admin port</h4>
+  <code>monit_admin_port: 2812</code>
 
 </td></tr>
 <tr><td>* templates.yml</td><td>Rubber specific</td></tr>
