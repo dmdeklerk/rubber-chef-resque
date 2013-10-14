@@ -117,18 +117,12 @@ Repository structure of rubbers resque template - can be found [here](https://gi
 </td></tr>
 <tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque.yml">resque.yml</a></td><td>
 
-  <h3>resque config</h3>
-
-  <h4>target</h4>
-  <code>[RAILS_ROOT]/config/resque.yml</code><p />
+   place holder for development, ignore
 
 </td></tr>
 <tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque-pool.yml">resque-pool.yml</a></td><td>
 
-  <h3>resque-pool config</h3>
-
-  <h4>target</h4>
-  <code>[RAILS_ROOT]/config/resque-pool.yml</code><p />
+   place holder for development, ignore
 
 </td></tr>
 <tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque-web.ru">resque-web.ru</a></td><td>
