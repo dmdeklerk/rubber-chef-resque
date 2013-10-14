@@ -7,8 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe 'rubber-chef-resque::default'
+
 #gem_package 'yajl-ruby'
-gem_package 'resque'
+gem_package 'resque' # allready in default
 gem_package 'resque-pool'
 
 template '/etc/init/resque-pool.conf' do
@@ -18,8 +20,8 @@ template '/etc/init/resque-pool.conf' do
 end
 
 cookbook_file node[:rubber_resque][:app_path] + '/lib/tasks/resque.rake' do
-  user      node[:node[:rubber_resque][:app_user]
-  group     node[:node[:rubber_resque][:app_group]
+  user      node[:rubber_resque][:app_user]
+  group     node[:rubber_resque][:app_group]
 end
 
 if node[:rubber_resque][:resque_pool][:monit]
