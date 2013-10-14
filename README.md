@@ -82,29 +82,35 @@ Repository structure of rubbers resque template - can be found [here](https://gi
   See resque-web-upstart.conf for parameters
 
 </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/rubber/deploy-resque.rb">deploy-resque.rb</a></td><td> ? </td></tr>
-<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-resque.yml</td><td>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/rubber/deploy-resque.rb">deploy-resque.rb</a></td><td>
 
   <h3>Capistrano tasks..<h3>
-  
+
   <h4>start</h4>
   <code>sudo service resque-pool start</code>
-  
+
   <h4>stop</h4>
   <code>sudo service resque-pool stop || true</code>
-  
+
   <h4>force_stop</h4>
   <code>kill -TERM `cat #{rubber_env.resque_pool_pid_file}`</code>
-  
+
   <h4>stats</h4>
   Continuously show worker stats
-  
+
   <h4>start web</h4>
   <code>sudo service resque-web start</code>
-  
+
   <h4>stop web</h4>
   <code>sudo service resque-web stop || true</code>
 
+</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;* rubber-resque.yml</td><td>
+
+    <h3>Rubber configs</h3>
+
+    Lists gems to install: 'yajl-ruby', 'resque', 'resque-pool'<p/>
+    And 'puma' for resque-web.
 
 </td></tr>
 <tr><td>&nbsp;&nbsp;* <a href="https://github.com/rubber/rubber/blob/master/templates/resque/config/resque.yml">resque.yml</a></td><td>
@@ -225,8 +231,6 @@ Repository structure of rubbers monit template - can be found [here](https://git
 </td></tr>
 <tr><td>* templates.yml</td><td>Rubber specific</td></tr>
 </table>
-
-
 
 #Resources
 
