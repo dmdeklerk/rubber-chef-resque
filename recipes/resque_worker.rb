@@ -17,6 +17,11 @@ template '/etc/init/resque-pool.conf' do
   group    'root'
 end
 
+cookbook_file node[:rubber_resque][:rails][:root] + '/lib/tasks/resque.rake' do
+  user      node[:node[:rubber_resque][:rails][:user]
+  group     node[:node[:rubber_resque][:rails][:group]
+end
+
 service 'resque-pool' do
   action    :start
 end

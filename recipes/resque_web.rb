@@ -18,7 +18,6 @@ end
 cookbook_file node[:rubber_resque][:rails][:root] + '/config/resque-web.ru' do
   user      node[:node[:rubber_resque][:rails][:user]
   group     node[:node[:rubber_resque][:rails][:group]
-  source    'resque-web.ru'
 end
 
 service 'resque-web' do
