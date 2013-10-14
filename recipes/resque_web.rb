@@ -20,9 +20,15 @@ cookbook_file node[:rubber_resque][:rails][:root] + '/config/resque-web.ru' do
   group     node[:node[:rubber_resque][:rails][:group]
 end
 
-template '/etc/monit/monit.d/monit-resque_web.conf' do
-  source   'monit-resque_web.conf.erb'
-  owner    'root'
-  group    'root'
-  notifies :restart, resources(:service => 'monit'), :delayed
+if node[:rubber_resque][:resque_web][:monit]
+  template '/etc/monit/monit.d/monit-resque_web.conf' do
+    source   'monit-resque_web.conf.erb'
+    owner    'root'
+    group    'root'
+    notifies :restart, resources(:service => 'monit'), :delayed
+  end
+else
+  service 'resque-web' do
+    action    :start
+  end
 end
