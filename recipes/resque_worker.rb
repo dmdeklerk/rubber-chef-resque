@@ -22,6 +22,9 @@ cookbook_file node[:rubber_resque][:rails][:root] + '/lib/tasks/resque.rake' do
   group     node[:node[:rubber_resque][:rails][:group]
 end
 
-service 'resque-pool' do
-  action    :start
+template '/etc/monit/monit.d/monit-resque_pool.conf' do
+  source   'monit-resque_pool.conf.erb'
+  owner    'root'
+  group    'root'
+  notifies :restart, resources(:service => 'monit'), :delayed
 end

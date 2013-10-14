@@ -1,0 +1,4 @@
+check process resque_pool with pidfile <%= node[:rubber_resque][:resque_web][:pid_file] %>
+  group resque-<%= node[:rubber_resque][:rails][:env] %>
+  start program = "/usr/bin/env service resque-pool start"
+  stop program = "/usr/bin/env service resque-pool stop"

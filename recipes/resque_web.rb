@@ -24,9 +24,5 @@ template '/etc/monit/monit.d/monit-resque_web.conf' do
   source   'monit-resque_web.conf.erb'
   owner    'root'
   group    'root'
-end
-
-# Restart monit so resque-web gets started
-service "monit" do
-  action    :restart
+  notifies :restart, resources(:service => 'monit'), :delayed
 end
