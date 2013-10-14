@@ -11,10 +11,6 @@
 # Install this cookbook on the rails node
 #
 
-cookbook_file '/tmp/foo.txt' do
-  source 'foo.txt'
-end
-
 template node[:rubber_resque][:rails][:root] + '/config/initializers/resque.rb' do
   source   'resque.rb.erb'
   owner    node[:node[:rubber_resque][:rails][:user]
