@@ -20,6 +20,13 @@ cookbook_file node[:rubber_resque][:rails][:root] + '/config/resque-web.ru' do
   group     node[:node[:rubber_resque][:rails][:group]
 end
 
-service 'resque-web' do
-  action    :start
+template '/etc/monit/monit.d/monit-resque_web.conf' do
+  source   'monit-resque_web.conf.erb'
+  owner    'root'
+  group    'root'
+end
+
+# Restart monit so resque-web gets started
+service "monit" do
+  action    :restart
 end
