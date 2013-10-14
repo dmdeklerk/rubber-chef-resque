@@ -10,6 +10,8 @@ This cookbook is one-to-one copy of rubbers resque template but now implemented 
 
 It uses [resque-pool](https://github.com/nevans/resque-pool) to manage resque workers and [monit](http://mmonit.com/monit/) to monitor resque-pool and resque's builtin resque-web. 
 
+I use the [apsoto/monit](https://github.com/apsoto/monit) cookbook.
+
 #Resources
 
 * https://github.com/resque/resque
