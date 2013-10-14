@@ -17,9 +17,9 @@ template '/etc/init/resque-pool.conf' do
   group    'root'
 end
 
-cookbook_file node[:rubber_resque][:rails][:root] + '/lib/tasks/resque.rake' do
-  user      node[:node[:rubber_resque][:rails][:user]
-  group     node[:node[:rubber_resque][:rails][:group]
+cookbook_file node[:rubber_resque][:app_path] + '/lib/tasks/resque.rake' do
+  user      node[:node[:rubber_resque][:app_user]
+  group     node[:node[:rubber_resque][:app_group]
 end
 
 if node[:rubber_resque][:resque_pool][:monit]

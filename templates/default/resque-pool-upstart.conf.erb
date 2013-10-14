@@ -7,8 +7,8 @@ stop on runlevel [016]
 # kill signal INT
 
 script
-  cd <%= node[:rubber_resque][:rails][:root] %>
-  exec sudo -u <%= node[:rubber_resque][:rails][:user] %> /bin/bash -l -c 'cd <%= node[:rubber_resque][:rails][:root] %> && exec bundle exec resque-pool >> log/resque-pool.log 2>&1'
+  cd <%= node[:rubber_resque][:app_path] %>
+  exec sudo -u <%= node[:rubber_resque][:app_user] %> /bin/bash -l -c 'cd <%= node[:rubber_resque][:app_path] %> && exec bundle exec resque-pool >> log/resque-pool.log 2>&1'
 end script
 
 post-start script

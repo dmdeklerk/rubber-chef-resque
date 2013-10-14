@@ -15,9 +15,9 @@ template '/etc/init/resque-web.conf' do
   group    'root'
 end
 
-cookbook_file node[:rubber_resque][:rails][:root] + '/config/resque-web.ru' do
-  user      node[:node[:rubber_resque][:rails][:user]
-  group     node[:node[:rubber_resque][:rails][:group]
+cookbook_file node[:rubber_resque][:app_path] + '/config/resque-web.ru' do
+  user      node[:node[:rubber_resque][:app_user]
+  group     node[:node[:rubber_resque][:app_group]
 end
 
 if node[:rubber_resque][:resque_web][:monit]

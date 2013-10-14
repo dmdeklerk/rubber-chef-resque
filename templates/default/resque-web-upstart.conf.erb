@@ -4,7 +4,7 @@ start on runlevel [2345]
 stop on runlevel [016]
 
 script
-  exec sudo -u <%= node[:rubber_resque][:rails][:user] %> /bin/bash -l -c 'cd <%= node[:rubber_resque][:rails][:root] %> && exec bundle exec puma --port <%= node[:rubber_resque][:resque_web][:port] %> config/resque-web.ru &>> log/resque-web.log'
+  exec sudo -u <%= node[:rubber_resque][:app_user] %> /bin/bash -l -c 'cd <%= node[:rubber_resque][:app_path] %> && exec bundle exec puma --port <%= node[:rubber_resque][:resque_web][:port] %> config/resque-web.ru &>> log/resque-web.log'
 end script
 
 post-start script

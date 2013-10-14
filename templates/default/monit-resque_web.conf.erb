@@ -1,5 +1,5 @@
 check process resque_web with pidfile <%= node[:rubber_resque][:resque_web][:pid_file] %>
-  group resque-<%= node[:rubber_resque][:rails][:env] %>
+  group resque-<%= node[:rubber_resque][:app_env] %>
   start program = "/usr/bin/env service resque-web start"
   stop program = "/usr/bin/env service resque-web stop"
 
