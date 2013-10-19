@@ -12,6 +12,8 @@ It uses [resque-pool](https://github.com/nevans/resque-pool) to manage resque wo
 
 I use the [apsoto/monit](https://github.com/apsoto/monit) cookbook (which is on the community site as 'monit').
 
+There is an [analysis of the resque template in rubber](https://github.com/dmdeklerk/rubber-chef-resque/wiki/rubber-analysis) on my wiki.
+
 #Resources
 
 * https://github.com/resque/resque
